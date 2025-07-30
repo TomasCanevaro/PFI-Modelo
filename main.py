@@ -27,7 +27,7 @@ y = df['exito']
 # 5. Preprocesamiento: vectorizar texto + codificar categoría
 preprocessor = ColumnTransformer(transformers=[
     ('text', TfidfVectorizer(), 'Objetivo principal'),
-    ('cat', OneHotEncoder(), 'Grupo')
+    ('cat', OneHotEncoder(handle_unknown='ignore'), ['Grupo'])
 ])
 
 # 6. Pipeline con modelo
@@ -43,4 +43,4 @@ print(classification_report(y_test, y_pred))
 
 # 9. Guardar modelo
 joblib.dump(pipeline, "modelo_randomforest_politicas.pkl")
-print("✅ Modelo guardado como modelo_randomforest_politicas.pkl")
+print("Modelo guardado como modelo_randomforest_politicas.pkl")
